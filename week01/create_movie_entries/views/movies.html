@@ -1,0 +1,19 @@
+<head>
+    <title>{{page_title}}</title>
+    <style>
+        body {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+        }
+    </style>
+</head>
+
+<h1>{{page_title}}</h1>
+<form action="/add_movie" method="post">
+    <label for="title">{{movie_data.title}}</label>
+    <input type="text" name="movie_title">
+    <label for="year">{{movie_data.year}}</label>
+    <input type="text" name="release_year">
+    <label for="imdb">{{movie_data.imdb}}</label>
+    <input type="text" name="imdb">
+    <input type="submit" value="Submit">
+</form>
