@@ -22,9 +22,9 @@ Suppose we're looking for movies highly rated but also very long.
 
 ## Other examples
 
-* Select all documents where `rated` is eigther "G" or "PG".
+* Select all documents where `rated` is eigther G, PG or PG-13.
 ```
-> db.movieDetails.find({ rated: { $in: ["G", "PG", "PG-13" ] } }, {title:1, _id: 0}).pretty()
+> db.movieDetails.find({ rated: { $in: ["G", "PG", "PG-13" ] } }, {title:1, _id: 0, rated: 1}).pretty()
 ```
 
 * Select all documents where `genres` *is not* animation nor comedy and `rated` *is not equal to* R.
