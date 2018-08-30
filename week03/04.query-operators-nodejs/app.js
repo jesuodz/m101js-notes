@@ -47,7 +47,7 @@ function queryDocument(options) {
     };
 
     if ("employees" in options) {
-        query.number_of_employees = { "$gte": options.number_of_employees }
+        query.number_of_employees = { "$gte": options.employees }
     }
 
     return query;
