@@ -31,5 +31,16 @@ Select all document movies where `tomato.meter` is greater than 95 or `metacriti
 Show all movies where `rated` is an acceptable parameter (all with exception of null, "NOT RATED", "UNRATED" ) and genres of animation and comedy.
 
 ```
-> db.movieDetails.find({ $and : [ { "rated": { $ne: null } }, { "rated": { $ne: "NOT RATED" } }, { "rated": { $ne: "UNRATED" } } ], genres: { $in: ["Animation", "Comedy"] } }, {title:1, _id: 0, rated: 1}).pretty()
+> db.movieDetails.find({ 
+        $and : [ 
+            { "rated": { $ne: null } }, 
+            { "rated": { $ne: "NOT RATED" } }, 
+            { "rated": { $ne: "UNRATED" } } 
+        ], 
+        genres: { $in: ["Animation", "Comedy"] } 
+    }, 
+    {
+        title:1, _id: 0, rated: 1
+    }
+).pretty()
 ```
