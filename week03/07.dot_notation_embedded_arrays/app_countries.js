@@ -17,7 +17,8 @@ MongoClient.connect(url, (error, client) => {
     const db = client.db(dbName);
     const query = queryDocument(ops);
     const projection = {"_id": 0, "name": 1, "founded_year": 1,
-                        "number_of_employees": 1, "crunchbase_url": 1, "ipo.valuation_amount": 1};
+                        "number_of_employees": 1, "crunchbase_url": 1, 
+                        "ipo.valuation_amount": 1, "offices.country_code": 1};
     let cursor = db.collection('companies').find(query);
     cursor.project(projection);
     let numMatches = 0;
@@ -58,6 +59,10 @@ function queryDocument(options) {
         }
     }
 
+    if ("country" in options) {
+        query["offices.country_code"] = options.country;
+    }
+
     return query;
 }
 
@@ -67,7 +72,8 @@ function commandLineOptions() {
         { name: "firstYear", alias: "f", type: Number },
         { name: "lastYear", alias: "l", type: Number },
         { name: "employees", alias: "e", type: Number },
-        { name: "ipo", alias: "i", type: String }
+        { name: "ipo", alias: "i", type: String },
+        { name: "country", alias: "c", type: String}
     ];
 
     let options = commandLineArgs(optionDefinitions);
@@ -102,6 +108,11 @@ function getUsage() {
                 {
                     name: "ipo",
                     alias: "i",
+                    typeLabel: '{underline string}'
+                },
+                {
+                    name: "country",
+                    alias: "c",
                     typeLabel: '{underline string}'
                 }
             ]
